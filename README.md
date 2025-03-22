@@ -8,7 +8,7 @@
 
 This repository contains the implementation of VERGE, a verification-augmented methodology for generating multi-hop datasets to evaluate Retrieval-Augmented Generation (RAG) systems. VERGE addresses significant methodological gaps in existing RAG evaluation frameworks by generating task-specific, multi-hop reasoning dataset.
 
-## Key Features
+## 🌟 Key Features
 
 - **VERGE**: Implements a novel verification agent that ensures generated questions necessitate genuine multi-hop reasoning and maintain factual consistency
 - **Multiple-Choice Format**: Isolates retrieval and reasoning capabilities from variability in answer generation
@@ -23,30 +23,32 @@ This repository contains the implementation of VERGE, a verification-augmented m
 - `prompts/`: Prompting templates for question generation, verification, and evaluation
 - `configs/`: Configuration files for experiment reproduction
 
-## Installation
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+### Usage
 
-### Download data (if necessary)
+#### Download data (if necessary)
 
 ```bash
 python data/
 ```
 
-### Generating Multi-hop Datasets with Verification Agent
+#### Chunking, Embedding and Storing
+
+```bash
+python data/
+```
+
+#### Generating Multi-hop Datasets with Verification Agent
 
 ```bash
 python dataset_generation/generate_dataset.py --task_domain <domain> --output_path <path>
-```
-
-### Evaluating RAG Systems
-
-```bash
-python rag_evaluation/evaluate.py --dataset <dataset_path> --model <model_name> --retriever <retriever_type>
 ```
 
 ### Analyzing Error Patterns
