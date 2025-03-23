@@ -43,7 +43,7 @@ class ChunkRetriever:
         random_seed: Optional[int] = None,
     ):
         """
-        Initialize the chunk retriever with a sentence transformer model.
+        Initialise the chunk retriever with a sentence transformer model.
 
         Args:
             model_name: Name of the sentence transformer model to use
@@ -87,11 +87,11 @@ class ChunkRetriever:
         # Generate embeddings for all chunks
         embeddings = self.model.encode([chunk.content for chunk in self.chunks], normalize_embeddings=True)
 
-        # Initialize FAISS index
+        # Initialise FAISS index
         dimension = embeddings.shape[1]
         self.index = faiss.IndexFlatIP(
             dimension
-        )  # Inner product is equivalent to cosine similarity for normalized vectors
+        )  # Inner product is equivalent to cosine similarity for normalised vectors
 
         # Add vectors to the index
         self.index.add(embeddings)
@@ -221,7 +221,7 @@ class HybridChunkRetriever(ChunkRetriever):
         random_seed: Optional[int] = None,
     ):
         """
-        Initialize the hybrid chunk retriever with both bi-encoder and cross-encoder models.
+        Initialise the hybrid chunk retriever with both bi-encoder and cross-encoder models.
         """
         super().__init__(task_domain, model_name=bi_encoder_name, random_seed=random_seed)
         self.cross_encoder = CrossEncoder(cross_encoder_name)
@@ -276,7 +276,7 @@ class HybridChunkRetriever(ChunkRetriever):
         
         embeddings = np.vstack(embeddings)
         
-        # Initialize FAISS index
+        # Initialise FAISS index
         print("Initializing FAISS index...")
         dimension = embeddings.shape[1]
         self.index = faiss.IndexFlatIP(dimension)
@@ -508,13 +508,13 @@ class HybridRetriever(BaseRetriever):
             'dense': 1.0    # Smoother distribution for dense
         }
     
-    def _softmax_normalize(
+    def _softmax_normalise(
         self, 
         scores: List[float], 
         retriever_type: str
     ) -> np.ndarray:
         """
-        Normalize scores using softmax with temperature scaling.
+        normalise scores using softmax with temperature scaling.
         
         Args:
             scores: List of retrieval scores
@@ -557,8 +557,8 @@ class HybridRetriever(BaseRetriever):
             # Extract docs and scores
             docs, scores = zip(*results)
             
-            # Normalize scores using softmax with temperature
-            norm_scores = self._softmax_normalize(scores, retriever_type)
+            # normalise scores using softmax with temperature
+            norm_scores = self._softmax_normalise(scores, retriever_type)
             
             # Apply retriever weight and add to results
             weighted_results = [(doc, score * weight) for doc, score in zip(docs, norm_scores)]

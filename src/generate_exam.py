@@ -536,11 +536,11 @@ if __name__ == "__main__":
     
     assert sample_size < target_hop_number * 4
     
-    # task_domains = ["gov_report", "hotpotqa", "multifieldqa_en", "SecFilings", "wiki"]
-    task_domains = ["multifieldqa_en"]
+    task_domains = ["gov_report", "hotpotqa", "multifieldqa_en", "SecFilings", "wiki"]
+    # task_domains = ["multifieldqa_en"]
     
-    # model_names = ["llama_3_2_3b", "gemma2_9b", 'ministral_8b']
-    model_names = ["ministral_8b"]
+    model_names = ["llama_3_2_3b", "gemma2_9b", 'ministral_8b']
+    # model_names = ["ministral_8b"]
     
     # versions = ["v5", "v6", "v7"]
     versions = ["v6"]
