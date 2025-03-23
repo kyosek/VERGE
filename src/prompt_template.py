@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from LLMServer.llama.llama_instant import ModelType
+from LLMServer.llama_instant import ModelType
 
 
 class PromptTemplate:

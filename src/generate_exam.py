@@ -18,7 +18,7 @@ import threading
 from MultiHopData.prompt_template import PromptTemplate
 from MultiHopData.retriever import Chunk, ChunkRetriever, HybridChunkRetriever
 from LLMServer.gcp.claude_instant import ClaudeGcp
-from LLMServer.llama.llama_instant import ModelFactory, ModelType
+from LLMServer.llama_instant import ModelFactory, ModelType
 
 
 class MCQGenerator:

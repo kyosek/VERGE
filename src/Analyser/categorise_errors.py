@@ -4,9 +4,9 @@ from pathlib import Path
 from tqdm import tqdm
 from dataclasses import dataclass
 
-from LLMServer.llama.llama_instant import ModelFactory, ModelType
+from LLMServer.llama_instant import ModelFactory, ModelType
 from MultiHopData.Solver.solve_exam_rag import ExamQuestion, ExamSolver
-from LLMServer.llama.llama_instant import ModelFactory, ModelType
+from LLMServer.llama_instant import ModelFactory, ModelType
 
 class ChunkAnalyser:
     def __init__(self):
