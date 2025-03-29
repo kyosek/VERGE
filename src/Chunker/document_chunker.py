@@ -20,7 +20,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 class DocumentChunker:
     def __init__(self, chunk_size: int = 4000, chunk_overlap: int = 200):
-        """Initialize the DocumentChunker with configurable parameters.
+        """Initialise the DocumentChunker with configurable parameters.
 
         Args:
             chunk_size: The size of each chunk in characters
@@ -237,7 +237,7 @@ class TopicBasedChunkStrategy(ChunkStrategy):
 
 class EnhancedDocumentChunker:
     def __init__(self, strategy: ChunkStrategy):
-        """Initialize the DocumentChunker with a specific chunking strategy."""
+        """Initialise the DocumentChunker with a specific chunking strategy."""
         self.strategy = strategy
     
     def process_file(self, file_path: str) -> Dict[str, Any]:

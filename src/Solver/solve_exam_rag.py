@@ -434,10 +434,10 @@ def main(
         exam_file: Name of the exam file to solve
         n_documents: Number of supporting documents to use
     """
-    # Initialize exam solver without retriever since we're using pre-retrieved chunks
+    # Initialise exam solver without retriever since we're using pre-retrieved chunks
     solver = ExamSolver(n_documents=n_documents)
 
-    # Initialize the appropriate model
+    # Initialise the appropriate model
     if model_type == "gemini":
         model = GeminiGcp(model_name=model_name)
     elif model_type == "claude":

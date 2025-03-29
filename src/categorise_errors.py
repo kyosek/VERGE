@@ -10,7 +10,7 @@ from LLMServer.llama_instant import ModelFactory, ModelType
 
 class ChunkAnalyser:
     def __init__(self):
-        """Initialize chunk analysis."""
+        """Initialise chunk analysis."""
         self.llm = ModelFactory.create_model(ModelType.GEMMA2_9B)
     
     def categorise_error_type(self, question_data: dict, exam_taker_reasoning: str) -> Dict[str, bool]:
@@ -117,7 +117,7 @@ class ChunkAnalyser:
 
 class ExamMistakeClassifier:
     def __init__(self, chunk_analyser: ChunkAnalyser):
-        """Initialize the classifier with a ChunkAnalyser instance."""
+        """Initialise the classifier with a ChunkAnalyser instance."""
         self.chunk_analyser = chunk_analyser
         self.solver = ExamSolver()
     
@@ -202,7 +202,7 @@ def main(exam_path: str, result_path: str, output_path: str, model_type: str, ra
         result_path: Path to the exam results file
         output_path: Path where the updated results should be saved
     """
-    # Initialize components
+    # Initialise components
     chunk_analyser = ChunkAnalyser()
     classifier = ExamMistakeClassifier(chunk_analyser)
     

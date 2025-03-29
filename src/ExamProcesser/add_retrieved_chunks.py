@@ -30,7 +30,7 @@ def add_retrieved_chunks_to_exam(
     with open(exam_path, 'r') as f:
         exam = json.load(f)
     
-    # Initialize retrievers
+    # Initialise retrievers
     faiss_retriever = FAISSRetriever(chunk_retriever)
     bm25_retriever = BM25Retriever([chunk.content for chunk in chunk_retriever.chunks])
     hybrid_retriever = HybridRetriever([
