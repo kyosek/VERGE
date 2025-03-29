@@ -12,9 +12,6 @@ import ast
 from tqdm import tqdm
 from llama_cpp import Llama
 
-from concurrent.futures import ThreadPoolExecutor
-import threading
-
 from MultiHopData.prompt_template import PromptTemplate
 from MultiHopData.retriever import Chunk, ChunkRetriever, HybridChunkRetriever
 from LLMServer.llama_instant import ModelFactory, ModelType
@@ -55,7 +52,6 @@ class MCQGenerator:
         print(f"Using {self.model_type}")
         self.llm = ModelFactory.create_model(self.model_type)
         self.verification_llm = ModelFactory.create_model(ModelType.GEMMA2_9B)
-        # self.chunk_analyser = ChunkAnalyser()
     
     def extract_with_patterns(self, text: str, patterns: List) -> List[str]:
 
@@ -297,15 +293,11 @@ class MCQGenerator:
     def generate_question(self, chunks: List[Dict[str, str]], task_domain: str) -> Optional[Dict]:
         """Generate a multiple-choice question with documentation included."""
         # Analyse chunks
-        # relationships = self.chunk_analyser.analyse_chunk_relationships(chunks)
-        # reasoning_type = self.chunk_analyser.identify_reasoning_type(chunks)
         
         # Generate question with enhanced prompt
         prompt = self._make_enhanced_question_prompt(
             task_domain=task_domain,
             chunks=chunks,
-            # reasoning_type=reasoning_type,
-            # relationships=relationships
         )
         
         response = self.llm.invoke(prompt)
@@ -319,10 +311,6 @@ class MCQGenerator:
                 "documentation": [chunk["text"] for chunk in chunks],
                 "metadata": {"num_chunks_used": len(chunks)}
             }
-            
-            # Add reasoning steps if available
-            # if reasoning_steps_match:
-            #     parsed_question["metadata"]["reasoning_steps"] = self._extract_correct_answer(response)
             
             return parsed_question
             
@@ -530,7 +518,6 @@ def main(
 
 if __name__ == "__main__":
     sample_size = 700
-    # sample_size = 3
     target_hop_number = 176
     
     assert sample_size < target_hop_number * 4
@@ -539,10 +526,8 @@ if __name__ == "__main__":
     # task_domains = ["multifieldqa_en"]
     
     model_names = ["llama_3_2_3b", "gemma2_9b", 'ministral_8b']
-    # model_names = ["ministral_8b"]
     
-    # versions = ["v5", "v6", "v7"]
-    versions = ["v6"]
+    versions = ["v1"]
     
     # task_domain = "gov_report"
     for model_name in model_names:
