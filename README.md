@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="img/question-generation-flow.png" alt="VERGE dataset generation process" 
+  <img src="imgs/question-generation-flow.png" alt="VERGE dataset generation process" 
   style="width:700px">
   <br>
   <b>Figure</b>: VERGE dataset generation process
