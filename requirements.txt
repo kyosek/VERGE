@@ -135,8 +135,6 @@ language_data==1.2.0
 llama_cpp_python==0.3.7
 llama_models==0.0.36
 llama_stack==0.0.36
-# Editable install with no version control (lm_eval==1.0.0)
--e /Users/kyosuke/projects/auto-rag-eval/auto-rag-eval/lm-evaluation-harness
 lxml==5.3.0
 marisa-trie==1.2.0
 markdown-it-py==3.0.0
