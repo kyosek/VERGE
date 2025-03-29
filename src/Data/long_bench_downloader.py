@@ -32,8 +32,7 @@ def save_contexts_to_files(datasets, output_dir="output"):
 
 if __name__ == "__main__":
     # List of datasets to process
-    datasets = ["2wikimqa"]
-    datasets = ["2wikimqa", "qasper", "multifieldqa_en", "hotpotqa", "gov_report"]
+    datasets = ["2wikimqa", "multifieldqa_en", "hotpotqa", "gov_report"]
 
     # Process each dataset
     for dataset_name in datasets:
