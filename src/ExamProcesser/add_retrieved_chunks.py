@@ -13,7 +13,7 @@ import logging
 import nltk
 from nltk.tokenize import word_tokenize
 
-from MultiHopData.retriever import BaseRetriever, BM25Retriever, Chunk, HybridChunkRetriever, ChunkRetriever, FAISSRetriever, HybridRetriever, RerankingRetriever
+from retriever import BaseRetriever, BM25Retriever, Chunk, HybridChunkRetriever, ChunkRetriever, FAISSRetriever, HybridRetriever, RerankingRetriever
 
 nltk.download("punkt_tab")
 
