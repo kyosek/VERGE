@@ -1,3 +1,4 @@
+import argparse
 import json
 import re
 import numpy as np
@@ -12,8 +13,8 @@ import ast
 from tqdm import tqdm
 from llama_cpp import Llama
 
-from MultiHopData.prompt_template import PromptTemplate
-from MultiHopData.retriever import Chunk, ChunkRetriever, HybridChunkRetriever
+from prompt_template import PromptTemplate
+from retriever import Chunk, ChunkRetriever, HybridChunkRetriever
 from LLMServer.llama_instant import ModelFactory, ModelType
 
 
@@ -517,31 +518,34 @@ def main(
 
 
 if __name__ == "__main__":
-    sample_size = 700
-    target_hop_number = 176
-    
-    assert sample_size < target_hop_number * 4
-    
-    task_domains = ["gov_report", "hotpotqa", "multifieldqa_en", "SecFilings", "wiki"]
-    # task_domains = ["multifieldqa_en"]
-    
-    model_names = ["llama_3_2_3b", "gemma2_9b", 'ministral_8b']
-    
-    versions = ["v1"]
-    
-    # task_domain = "gov_report"
-    for model_name in model_names:
-        for task_domain in task_domains:
-            for version in versions:
-                data_path = f"MultiHopData/{task_domain}/chunks/docs_chunk_semantic_{version}_cleaned.json"
-                output_path = f"MultiHopData/{task_domain}/exams/exam_new_{model_name}_{version}.json"
+    parser = argparse.ArgumentParser(description="Generate multi-hop MCQ datasets with VERGE.")
+    parser.add_argument("--task_domain", required=True,
+                        choices=["gov_report", "hotpotqa", "multifieldqa_en", "SecFilings", "wiki"],
+                        help="Domain of the source documents.")
+    parser.add_argument("--model_name", required=True,
+                        choices=["llama_3_2_3b", "llama_3_1_8b", "gemma2_9b", "ministral_8b", "mistral_7b"],
+                        help="Generator model for question generation.")
+    parser.add_argument("--sample_size", type=int, default=700,
+                        help="Number of seed chunks to sample (default: 700).")
+    parser.add_argument("--target_hop_number", type=int, default=176,
+                        help="Target number of questions per hop count (default: 176).")
+    parser.add_argument("--version", default="v1",
+                        help="Chunk version string used in file paths (default: v1).")
+    args = parser.parse_args()
 
-                main(
-                    data_path,
-                    output_path,
-                    model_name,
-                    task_domain,
-                    sample_size,
-                    version,
-                    target_hop_number=target_hop_number
-                )
+    assert args.sample_size < args.target_hop_number * 4, \
+        "sample_size must be less than target_hop_number * 4"
+
+    data_path = f"data/{args.task_domain}/chunks/docs_chunk_semantic_{args.version}_cleaned.json"
+    output_path = f"data/{args.task_domain}/exams/exam_{args.model_name}_{args.version}.json"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    main(
+        data_path,
+        output_path,
+        args.model_name,
+        args.task_domain,
+        args.sample_size,
+        args.version,
+        target_hop_number=args.target_hop_number,
+    )

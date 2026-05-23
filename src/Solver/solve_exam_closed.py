@@ -12,7 +12,7 @@ from tqdm import tqdm
 import nltk
 from nltk.tokenize import word_tokenize
 
-from MultiHopData.retriever import Chunk, ChunkRetriever
+from retriever import Chunk, ChunkRetriever
 from LLMServer.llama_gcp.llama_gcp_instant import LlamaGcpModel
 from LLMServer.gcp.claude_instant import ClaudeGcp
 from LLMServer.gcp.gemini_instant import GeminiGcp

@@ -8,7 +8,7 @@ import faiss
 import numpy as np
 from tqdm import tqdm
 
-from MultiHopData.retriever import BaseRetriever, BM25Retriever, Chunk, ChunkRetriever, FAISSRetriever, HybridRetriever, RerankingRetriever
+from retriever import BaseRetriever, BM25Retriever, Chunk, ChunkRetriever, FAISSRetriever, HybridRetriever, RerankingRetriever
 from LLMServer.gcp.claude_instant import ClaudeGcp
 from LLMServer.gcp.gemini_instant import GeminiGcp
 from LLMServer.llama_instant import ModelFactory, ModelType
